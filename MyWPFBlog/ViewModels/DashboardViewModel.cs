@@ -98,6 +98,58 @@ namespace MyWPFBlog.ViewModels
                     Count=8888
                 },
                 ];
+            Distributions = [
+                new(){
+                    Count=55,
+                    Symbol= SymbolRegular.Laptop24,
+                    Type="WPF"
+                },
+                new(){
+                 Count=23,
+                 Symbol= SymbolRegular.Server24,
+                 Type="Webapi"
+                },
+                new(){
+                    Count=11,
+                    Symbol= SymbolRegular.Games24,
+                    Type="Unity"
+                },
+                new(){
+                    Count=22,
+                    Symbol= SymbolRegular.Vault24,
+                    Type="Vue"
+                },
+                new(){
+                    Count=31,
+                    Symbol= SymbolRegular.Box24,
+                    Type="React"
+                },
+                ];
+            StatisticsSeries = [
+                new PolarLineSeries<int>
+                {
+                    Values = Distributions.Select(n=>n.Count).ToArray(),
+                    Fill = new SolidColorPaint(SKColors.Blue.WithAlpha(90)),
+                    GeometrySize = 30,
+                    DataLabelsSize = 20,
+                    DataLabelsPaint = new SolidColorPaint(new SKColor(30, 30, 30)),
+                    DataLabelsPosition = PolarLabelsPosition.Middle,
+                 }];
+            StatisticsRadialAxes = [
+                 new PolarAxis
+                 {
+                    CustomSeparators = [10, 30, 50],
+                    LabelsBackground = LvcColor.Empty,
+                    LabelsPaint = new SolidColorPaint(SKColors.White),
+                 }];
+            StatisticsAngleAxes =[
+                 new PolarAxis
+                 {
+                    LabelsRotation = LiveCharts.TangentAngle,
+                    LabelsBackground = LvcColor.Empty,
+                    LabelsPaint = new SolidColorPaint(SKColors.White),
+                    Labels = Distributions.Select(n=>n.Type).ToList(),
+                }];
 #endif
         }
         [ObservableProperty]
@@ -122,51 +174,19 @@ namespace MyWPFBlog.ViewModels
         [ObservableProperty]
         StatisticInfo[] statistics;
         [ObservableProperty]
-        ISeries[] statisticsSeries =
-        {
-            new PolarLineSeries<int>
-            {
-                Values = [51,23,11,22,31],
-                 Fill = new SolidColorPaint(SKColors.Blue.WithAlpha(90)),
-                 GeometrySize=30,
-                 DataLabelsSize=20,
-                 DataLabelsPaint = new SolidColorPaint(new SKColor(30, 30, 30)),
-                 DataLabelsPosition = PolarLabelsPosition.Middle,
-            }
-        };
+        ObservableCollection<StatisticInfo> distributions;
         [ObservableProperty]
-        PolarAxis[] statisticsRadialAxes =
-        {
-            new PolarAxis
-            {
-                CustomSeparators=[10,30,50],
-                LabelsBackground=LvcColor.Empty,
-                  LabelsPaint=new  SolidColorPaint(SKColors.White),
-            }
-        };
+        ISeries[] statisticsSeries;
         [ObservableProperty]
-        PolarAxis[] statisticsAngleAxes =
-        {
-            new PolarAxis
-            {
-                LabelsRotation = LiveCharts.TangentAngle,
-                LabelsBackground=LvcColor.Empty,
-                LabelsPaint=new  SolidColorPaint(SKColors.White),
-                Labels=[
-                    "WPF",
-                    "Webapi",
-                    "Unity",
-                    "Vue",
-                    "React"
-                    ],
-            }
-        };
+        PolarAxis[] statisticsRadialAxes;
+        [ObservableProperty]
+        PolarAxis[] statisticsAngleAxes;
         [ObservableProperty]
         ISeries[] activitySeries =
        [
             new ScatterSeries<double>(){
                 Values=Enumerable.Range(0,120).Select(n=>Random.Shared.NextDouble()*10).ToList(),
-                
+
             },
             ];
 

@@ -185,8 +185,6 @@
         </StackPanel>
 
         <!--  right pane  -->
-
-
         <StackPanel Grid.Column="1" Margin="20">
             <ui:TextBlock FontFamily="18" Text="Pinned" />
             <ItemsControl ItemsSource="{Binding PinnedBlogs}">
@@ -282,21 +280,51 @@
                     </DataTemplate>
                 </ItemsControl.ItemTemplate>
             </ItemsControl>
-            <lvc:PolarChart
-                Height="500"
-                AngleAxes="{Binding StatisticsAngleAxes}"
-                RadiusAxes="{Binding StatisticsRadialAxes}"
-                Series="{Binding StatisticsSeries}" />
+            <ui:TextBlock
+                Margin="0,10"
+                FontFamily="18"
+                Text="Distributions" />
+            <DockPanel>
+                <ItemsControl DockPanel.Dock="Right" ItemsSource="{Binding Distributions}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <ui:Card Width="200" Margin="3">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="auto" />
+                                        <ColumnDefinition Width="80" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <ui:SymbolIcon
+                                        Margin="5,0"
+                                        VerticalAlignment="Center"
+                                        FontSize="18"
+                                        Symbol="{Binding Symbol}" />
+                                    <ui:TextBlock
+                                        Grid.Column="1"
+                                        VerticalAlignment="Center"
+                                        Text="{Binding Type}" />
+                                    <ui:TextBlock
+                                        Grid.Column="2"
+                                        FontSize="25"
+                                        Text="{Binding Count}" />
 
+                                </Grid>
+
+                            </ui:Card>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <lvc:PolarChart
+                    AngleAxes="{Binding StatisticsAngleAxes}"
+                    RadiusAxes="{Binding StatisticsRadialAxes}"
+                    Series="{Binding StatisticsSeries}" />
+            </DockPanel>
             <ui:TextBlock
                 Margin="0,10"
                 FontFamily="18"
                 Text="Activities" />
-
-            <lvc:CartesianChart Series="{Binding ActivitySeries}" Height="500"/>
-
+            <lvc:CartesianChart Height="500" Series="{Binding ActivitySeries}" />
         </StackPanel>
-
-
     </Grid>
 </Page>

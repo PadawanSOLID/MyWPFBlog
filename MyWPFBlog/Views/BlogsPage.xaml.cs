@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyWPFBlog.ViewModels;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -20,9 +21,10 @@ namespace MyWPFBlog.Views
     /// </summary>
     public partial class BlogsPage : Page
     {
-        public BlogsPage()
+        public BlogsPage(BlogsViewModel vm)
         {
             InitializeComponent();
+            DataContext = vm;
         }
     }
 }
