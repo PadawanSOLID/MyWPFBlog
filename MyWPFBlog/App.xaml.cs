@@ -50,6 +50,7 @@ namespace MyWPFBlog
                 services.AddSingleton<INavigationService, NavigationService>();
 
                 services.AddScoped<IUserClient, UserClient>();
+                services.AddScoped<IAuthorizeClient, AuthorizeClient>();
             }).Build();
 
         private void OnStartup(object sender, StartupEventArgs e)

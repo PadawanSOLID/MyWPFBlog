@@ -1,7 +1,9 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
+using CommunityToolkit.Mvvm.Messaging;
 using Microsoft.Extensions.DependencyInjection;
 using MyWPFBlog.Clients;
+using MyWPFBlog.Messages;
 using MyWPFBlog.Views;
 using System;
 using System.Collections.Generic;
@@ -18,11 +20,10 @@ namespace MyWPFBlog.ViewModels
 {
     public partial class SignUpViewModel : ObservableValidator, INavigationAware
     {
-        public SignUpViewModel(INavigationService navigationService, IUserClient userClient, IServiceProvider serviceProvider)
+        public SignUpViewModel(INavigationService navigationService, IUserClient userClient)
         {
             _navigationService = navigationService;
             _userClient = userClient;
-            _serviceProvider = serviceProvider;
         }
 
         [ObservableProperty]
@@ -61,7 +62,6 @@ namespace MyWPFBlog.ViewModels
 
         private INavigationService _navigationService;
         private IUserClient _userClient;
-        private IServiceProvider _serviceProvider;
 
         [RelayCommand]
         void SignIn()
@@ -71,21 +71,18 @@ namespace MyWPFBlog.ViewModels
         [RelayCommand]
         async Task SignUp()
         {
-
             try
             {
-                var res = await _userClient.GetWriters();
-                if (res.Code != 200) return;
-                        var result = await _userClient.Create(Email, Password, Username);
-                if (result.Code == 200)
+                var result = await _userClient.Create(Email, Password, Username);
+                if (result)
                 {
-                    App.Current.MainWindow.Close();
-                    var mainWindow = _serviceProvider.GetRequiredService<MainWindow>();
-                    mainWindow.ShowDialog();
+                    MessageBox.Show("Sign up successfully!");
+                    _navigationService.Navigate(typeof(SignInView));
+                    WeakReferenceMessenger.Default.Send(new WriterDTOMessage(Email));
                 }
                 else
                 {
-                    MessageBox.Show(result.Msg);
+                    MessageBox.Show("Failed to create new account!");
                 }
             }
             catch (Exception e)

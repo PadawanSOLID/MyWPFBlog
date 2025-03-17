@@ -12,13 +12,19 @@ using System.Windows;
 using Wpf.Ui.Controls;
 using MyWPFBlog.Views;
 using System.Configuration;
+using Wpf.Ui;
+using CommunityToolkit.Mvvm.Input;
 
 namespace MyWPFBlog.ViewModels
 {
     public partial class MainViewModel : ObservableRecipient
     {
+        public MainViewModel(INavigationService navigationService)
+        {
+            _navigationService = navigationService;
+        }
         [ObservableProperty]
-        ObservableCollection<object> _menuItems =
+        ObservableCollection<NavigationViewItem> _menuItems =
             [
                 new NavigationViewItem("Home", SymbolRegular.AppGeneric24, typeof(DashboardPage)),
                 new NavigationViewItem("Blogs", SymbolRegular.AppsListDetail24, typeof(BlogsPage)),
@@ -27,9 +33,17 @@ namespace MyWPFBlog.ViewModels
             ];
 
         [ObservableProperty]
-        ObservableCollection<object> _footerMenuItems =
+        ObservableCollection<NavigationViewItem> _footerMenuItems =
             [
                new NavigationViewItem("Settings", SymbolRegular.Settings24, typeof(SettingsPage))
             ];
+
+        private INavigationService _navigationService;
+
+        [RelayCommand]
+        void Loaded()
+        {
+            _navigationService.Navigate(MenuItems.First().TargetPageType);
+        }
     }
 }
