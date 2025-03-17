@@ -14,6 +14,7 @@
     <None Remove="Asserts\Achievements\yolo.png" />
     <None Remove="Asserts\avatar.jpg" />
     <None Remove="Asserts\logo.png" />
+    <None Remove="Asserts\signup.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -21,8 +22,15 @@
     <PackageReference Include="LiveChartsCore.SkiaSharpView.WPF" Version="2.0.0-rc5.4" />
     <PackageReference Include="Microsoft.Extensions.Hosting" Version="8.0.1" />
     <PackageReference Include="Microsoft.Extensions.Hosting.Abstractions" Version="8.0.1" />
+    <PackageReference Include="Microsoft.Xaml.Behaviors.Wpf" Version="1.1.135" />
+    <PackageReference Include="RestSharp" Version="112.1.0" />
     <PackageReference Include="WPF-UI" Version="4.0.2" />
     <PackageReference Include="WPF-UI.Tray" Version="4.0.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\MyWebAPI\MyModels\MyModels.csproj" />
+    <ProjectReference Include="..\..\MyWebAPI\Utilities\Utilities.csproj" />
   </ItemGroup>
 
   <ItemGroup>
@@ -31,6 +39,13 @@
     <Resource Include="Asserts\Achievements\yolo.png" />
     <Resource Include="Asserts\avatar.jpg" />
     <Resource Include="Asserts\logo.png" />
+    <Resource Include="Asserts\signup.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

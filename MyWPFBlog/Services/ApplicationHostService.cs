@@ -34,27 +34,17 @@ namespace MyWPFBlog.Services
         /// </summary>
         private Task HandleActivationAsync()
         {
-            if (Application.Current.Windows.OfType<MainWindow>().Any())
+            if (Application.Current.Windows.OfType<LoginWindow>().Any())
             {
                 return Task.CompletedTask;
             }
 
-            var mainWindow = _serviceProvider.GetRequiredService<MainWindow>();
-            mainWindow.Loaded += OnMainWindowLoaded;
-            mainWindow?.Show();
+            var loginWindow = _serviceProvider.GetRequiredService<LoginWindow>();
+            loginWindow?.Show();
 
             return Task.CompletedTask;
         }
 
-        private void OnMainWindowLoaded(object sender, RoutedEventArgs e)
-        {
-            if (sender is not MainWindow mainWindow)
-            {
-                return;
-            }
-
-            _ = mainWindow.NavigationView.Navigate(typeof(DashboardPage));
-        }
     }
 
 }

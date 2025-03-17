@@ -1,9 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
-VisualStudioVersion = 17.12.35527.113 d17.12
+VisualStudioVersion = 17.12.35527.113
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyWPFBlog", "MyWPFBlog\MyWPFBlog.csproj", "{1E4C10C2-8809-48B8-9342-8CB15CB6AE19}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MyModels", "..\MyWebAPI\MyModels\MyModels.csproj", "{E207C729-F7CF-478D-91FE-0845F85AAD16}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utilities", "..\MyWebAPI\Utilities\Utilities.csproj", "{2E1766E6-3DE9-46F3-8AE5-07C8AEC5E76C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +19,14 @@ Global
 		{1E4C10C2-8809-48B8-9342-8CB15CB6AE19}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1E4C10C2-8809-48B8-9342-8CB15CB6AE19}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1E4C10C2-8809-48B8-9342-8CB15CB6AE19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E207C729-F7CF-478D-91FE-0845F85AAD16}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E207C729-F7CF-478D-91FE-0845F85AAD16}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E207C729-F7CF-478D-91FE-0845F85AAD16}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E207C729-F7CF-478D-91FE-0845F85AAD16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2E1766E6-3DE9-46F3-8AE5-07C8AEC5E76C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2E1766E6-3DE9-46F3-8AE5-07C8AEC5E76C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2E1766E6-3DE9-46F3-8AE5-07C8AEC5E76C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2E1766E6-3DE9-46F3-8AE5-07C8AEC5E76C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

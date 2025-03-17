@@ -1,0 +1,115 @@
+﻿<Page
+    x:Class="MyWPFBlog.Views.SignUpView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:MyWPFBlog.Views"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:ui="http://schemas.lepo.co/wpfui/2022/xaml"
+    xmlns:viewmodels="clr-namespace:MyWPFBlog.ViewModels"
+    Title="SignUpView"
+    d:DataContext="{d:DesignInstance Type=viewmodels:SignUpViewModel}"
+    Foreground="White"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <Style x:Key="ErrorMsgStyle" TargetType="ui:TextBlock">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Foreground" Value="#99ff0000" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="Margin" Value="0,5" />
+            <Setter Property="MaxWidth" Value="360" />
+        </Style>
+        <Style x:Key="DescriptionMsgStyle" TargetType="ui:TextBlock">
+            <Setter Property="FontSize" Value="12" />
+            <Setter Property="Foreground" Value="WhiteSmoke" />
+            <Setter Property="TextWrapping" Value="Wrap" />
+            <Setter Property="Margin" Value="0,5" />
+            <Setter Property="MaxWidth" Value="360" />
+
+        </Style>
+        <Style x:Key="LabelStyle" TargetType="ui:TextBlock">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontWeight" Value="DemiBold" />
+            <Setter Property="Margin" Value="0,10,0,5" />
+        </Style>
+    </Page.Resources>
+    <UniformGrid Rows="1">
+        <Border Background="Black">
+            <Image
+                VerticalAlignment="Bottom"
+                Source="/Asserts/signup.png"
+                Stretch="Uniform" />
+
+        </Border>
+        <StackPanel>
+            <!--  switch to sign in view  -->
+            <StackPanel
+                Margin="15,0"
+                HorizontalAlignment="Right"
+                Orientation="Horizontal">
+                <ui:TextBlock Padding="5" Text="Already have an account?" />
+                <ui:HyperlinkButton Command="{Binding SignInCommand}" Content="Sign In →" />
+            </StackPanel>
+
+            <StackPanel HorizontalAlignment="Center">
+
+                <!--  title  -->
+                <ui:TextBlock
+                    Margin="0,10"
+                    FontSize="20"
+                    FontWeight="Bold"
+                    Text="Sign up to MyWPFBlog" />
+
+                <!--  email  -->
+                <ui:TextBlock Style="{StaticResource LabelStyle}">
+                    Email<Run
+                        BaselineAlignment="TextTop"
+                        FontSize="6"
+                        Text="*" />
+                </ui:TextBlock>
+                <ui:TextBox
+                    Margin="0,3"
+                    PlaceholderText="Email"
+                    Text="{Binding Email}" />
+                <ui:TextBlock Style="{StaticResource ErrorMsgStyle}" Visibility="{Binding EmailErrorVisibility}">
+                    <Run FontFamily="Segoe Fluent Icons" Text="&#xe998;" />
+                    <Run Text="{Binding EmailErrorMsg}" />
+                </ui:TextBlock>
+                <ui:TextBlock Style="{StaticResource LabelStyle}">
+                    Password<Run
+                        BaselineAlignment="TextTop"
+                        FontSize="6"
+                        Text="*" />
+                </ui:TextBlock>
+                <ui:PasswordBox
+                    Margin="0,3" 
+                   Password="{Binding Password,Mode=TwoWay,NotifyOnTargetUpdated=True}"
+                    PlaceholderText="Password" />
+                <ui:TextBlock Style="{StaticResource ErrorMsgStyle}" Visibility="{Binding PasswordErrorVisibility}">
+                    <Run FontFamily="Segoe Fluent Icons" Text="&#xe998;" />
+                    <Run Text="{Binding PasswordErrorMsg}" />
+                </ui:TextBlock>
+                <ui:TextBlock Style="{StaticResource DescriptionMsgStyle}" Text="Password should be at least 15 characters OR at least 8 characters including a number and a lowercase letter." />
+                <ui:TextBlock Style="{StaticResource LabelStyle}">
+                    Username<Run
+                        BaselineAlignment="TextTop"
+                        FontSize="6"
+                        Text="*" />
+                </ui:TextBlock>
+                <ui:TextBox PlaceholderText="Username" Text="{Binding Username}" />
+                <ui:TextBlock Style="{StaticResource ErrorMsgStyle}" Visibility="{Binding UsernameErrorVisibility}">
+                    <Run FontFamily="Segoe Fluent Icons" Text="&#xe998;" />
+                    <Run Text="{Binding UsernameErrorMsg}" />
+                </ui:TextBlock>
+                <ui:TextBlock Style="{StaticResource DescriptionMsgStyle}" Text="Username may only contain alphanumeric characters or single hyphens, and cannot begin or end with a hyphen." />
+                <ui:Button
+                    Margin="0,15"
+                    HorizontalAlignment="Stretch"
+                    Command="{Binding SignUpCommand}"
+                    FontWeight="Bold">
+                    <ui:TextBlock FontSize="18" Text="Sign up  &gt;" />
+                </ui:Button>
+            </StackPanel>
+        </StackPanel>
+    </UniformGrid>
+</Page>
